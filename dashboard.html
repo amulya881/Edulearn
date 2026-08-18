@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>EduLearn - Dashboard</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+
+            background: #f5f7ff;
+
+            min-height: 100vh;
+        }
+
+
+        .navbar {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
+
+            padding:
+                20px 40px;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: bold;
+        }
+
+
+        .student {
+
+            font-size: 14px;
+        }
+
+
+        .container {
+
+            padding: 40px;
+        }
+
+
+        .welcome {
+
+            margin-bottom: 30px;
+        }
+
+
+        .welcome h1 {
+
+            color: #333;
+
+            margin-bottom: 8px;
+        }
+
+
+        .welcome p {
+
+            color: #777;
+        }
+
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .card:hover {
+
+            transform:
+                translateY(-5px);
+        }
+
+
+        .icon {
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .card h3 {
+
+            color: #555;
+
+            margin-bottom: 10px;
+        }
+
+
+        .number {
+
+            color: #667eea;
+
+            font-size: 28px;
+
+            font-weight: bold;
+        }
+
+
+        .courses {
+
+            margin-top: 30px;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+        }
+
+
+        .courses h2 {
+
+            margin-bottom: 20px;
+
+            color: #333;
+        }
+
+
+        .course {
+
+            padding: 15px;
+
+            border:
+                1px solid #eee;
+
+            border-radius: 10px;
+
+            margin-bottom: 12px;
+        }
+
+
+        @media(max-width:800px) {
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media(max-width:500px) {
+
+            .cards {
+
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+
+                padding: 20px;
+            }
+
+            .navbar {
+
+                padding:
+                    20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        EduLearn
+
+    </div>
+
+
+    <div class="student">
+
+        Student Dashboard
+
+    </div>
+
+
+</nav>
+
+
+<div class="container">
+
+
+    <div class="welcome">
+
+        <h1>
+            Welcome to EduLearn! 👋
+        </h1>
+
+        <p>
+            Continue your learning journey.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="icon">
+                📚
+            </div>
+
+            <h3>
+                Courses
+            </h3>
+
+            <div class="number">
+                6
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📝
+            </div>
+
+            <h3>
+                Assignments
+            </h3>
+
+            <div class="number">
+                12
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h3>
+                Progress
+            </h3>
+
+            <div class="number">
+                78%
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🏆
+            </div>
+
+            <h3>
+                Certificates
+            </h3>
+
+            <div class="number">
+                3
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="courses">
+
+
+        <h2>
+            My Courses
+        </h2>
+
+
+        <div class="course">
+            💻 Web Development
+        </div>
+
+
+        <div class="course">
+            🤖 Artificial Intelligence
+        </div>
+
+
+        <div class="course">
+            🗄️ Database Management
+        </div>
+
+
+        <div class="course">
+            ☁️ Cloud Computing
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EduLearn - Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+        }
+
+        .login-box {
+
+            width: 380px;
+
+            padding: 35px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,0.2);
+        }
+
+        h1 {
+
+            text-align: center;
+
+            color: #333;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #777;
+
+            margin-bottom: 25px;
+        }
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #333;
+
+            font-weight: bold;
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-bottom: 18px;
+
+            border:
+                1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        input:focus {
+
+            border-color: #667eea;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(102,126,234,0.15);
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #667eea;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+
+            background: #5568d8;
+        }
+
+        button:disabled {
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+        }
+
+        #message {
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+
+            min-height: 20px;
+        }
+
+        .success {
+
+            color: green;
+        }
+
+        .error {
+
+            color: red;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-box">
+
+
+    <h1>
+        EduLearn
+    </h1>
+
+
+    <p class="subtitle">
+        Student Learning Portal
+    </p>
+
+
+    <form id="loginForm">
+
+
+        <label for="email">
+            Email
+        </label>
+
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+        >
+
+
+        <label for="password">
+            Password
+        </label>
+
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+        >
+
+
+        <button
+            type="submit"
+            id="loginButton">
+
+            Login
+
+        </button>
+
+
+        <p id="message"></p>
+
+
+    </form>
+
+
+</div>
+
+
+<script>
+
+
+document
+    .getElementById("loginForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const message =
+                document
+                    .getElementById("message");
+
+
+            const button =
+                document
+                    .getElementById("loginButton");
+
+
+            message.textContent = "";
+
+            message.className = "";
+
+
+            button.disabled = true;
+
+            button.textContent =
+                "Checking...";
+
+
+            /* =========================
+               AJAX REQUEST
+            ========================= */
+
+
+            const xhr =
+                new XMLHttpRequest();
+
+
+            xhr.open(
+                "POST",
+                "login.php",
+                true
+            );
+
+
+            xhr.setRequestHeader(
+                "Content-Type",
+                "application/x-www-form-urlencoded"
+            );
+
+
+            xhr.onload = function() {
+
+
+                button.disabled = false;
+
+                button.textContent =
+                    "Login";
+
+
+                if (xhr.status === 200) {
+
+
+                    const response =
+                        JSON.parse(
+                            xhr.responseText
+                        );
+
+
+                    /* SUCCESS */
+
+                    if (response.success) {
+
+
+                        message.textContent =
+                            response.message;
+
+
+                        message.className =
+                            "success";
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.href =
+                                    "dashboard.html";
+
+                            },
+                            500
+                        );
+
+                    }
+
+
+                    /* ERROR */
+
+                    else {
+
+
+                        message.textContent =
+                            response.message;
+
+
+                        message.className =
+                            "error";
+
+                    }
+
+                }
+
+                else {
+
+                    message.textContent =
+                        "Server error!";
+
+                    message.className =
+                        "error";
+
+                }
+
+            };
+
+
+            xhr.onerror = function() {
+
+
+                button.disabled = false;
+
+                button.textContent =
+                    "Login";
+
+
+                message.textContent =
+                    "Unable to connect to server.";
+
+                message.className =
+                    "error";
+
+            };
+
+
+            xhr.send(
+
+                "email=" +
+                encodeURIComponent(email) +
+
+                "&password=" +
+                encodeURIComponent(password)
+
+            );
+
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
